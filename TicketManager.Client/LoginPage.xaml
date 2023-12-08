@@ -1,22 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TicketManager.Client.MainPage"
+             x:Class="TicketManager.Client.LoginPage"
              xmlns:views="clr-namespace:TicketManager.Client.ViewModels">
     <ContentPage.BindingContext>
         <views:LoginViewModel/>
     </ContentPage.BindingContext>
+
     <ScrollView>
+
         <VerticalStackLayout
             Spacing="10"
             Padding="10,0"
             VerticalOptions="Center">
+
+
             <Label
                 Text="Welcome to our Ticketsystem"
                 SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Start"/>
-
+                FontSize="28"
+                HorizontalOptions="Start"
+                VerticalOptions="Start"
+                Padding="0 0 40 0 "
+                />
+           
             <Label
                 Padding="30,0"
                 Text="Enter Username"
@@ -37,7 +44,7 @@
                 HorizontalOptions="Start"
                  />
             <Entry
-                Margin="30,0"
+                Margin="30, 0, 30, 50"
                 Text="{Binding Password}"
                 IsPassword="True"
                  />
@@ -45,7 +52,29 @@
                 x:Name="Btn_primary_LoginBtn"
                 Text="Login"
                 Command="{Binding LoginCommand}"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center" 
+                WidthRequest="300"
+                BackgroundColor="#414BB2"
+                TextColor="White"
+                />
+            <Label
+                Padding="30,0"
+                Text="or"
+                SemanticProperties.HeadingLevel="Level3"
+                FontSize="15"
+                HorizontalOptions="Center"
+                />
+            <Button
+                x:Name="Btn_secondary_CreateDevAccBtn"
+                Text="Create Developer Account"
+                Command="{Binding LoginCommand}"
+                HorizontalOptions="Center" 
+                WidthRequest="300"
+                BackgroundColor="white"
+                TextColor="#414BB2"
+                BorderColor="#414BB2"
+                BorderWidth="1.5"
+                />
 
         </VerticalStackLayout>
     </ScrollView>
