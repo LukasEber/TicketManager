@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TicketManager.Client.MainPage"
+             xmlns:views="clr-namespace:TicketManager.Client.ViewModels">
+    <ContentPage.BindingContext>
+        <views:LoginViewModel/>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="10"
+            Padding="10,0"
+            VerticalOptions="Center">
+            <Label
+                Text="Welcome to our Ticketsystem"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="32"
+                HorizontalOptions="Start"/>
+
+            <Label
+                Padding="30,0"
+                Text="Enter Username"
+                SemanticProperties.HeadingLevel="Level2"
+                FontSize="15"
+                HorizontalOptions="StartAndExpand"
+                />
+            <Entry
+                Margin="30,0"
+                Text="{Binding Username}"
+                IsPassword="False"
+                />
+            <Label
+                Padding="30,0"
+                Text="Enter Password"
+                SemanticProperties.HeadingLevel="Level2"
+                FontSize="15"
+                HorizontalOptions="Start"
+                 />
+            <Entry
+                Margin="30,0"
+                Text="{Binding Password}"
+                IsPassword="True"
+                 />
+            <Button
+                x:Name="Btn_primary_LoginBtn"
+                Text="Login"
+                Command="{Binding LoginCommand}"
+                HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
