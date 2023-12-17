@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TicketManager.Client.LoginPage"
+             x:Class="TicketManager.Client.Views.LoginPage"
              xmlns:views="clr-namespace:TicketManager.Client.ViewModels">
     <ContentPage.BindingContext>
         <views:LoginViewModel/>
@@ -11,9 +11,8 @@
 
         <VerticalStackLayout
             Spacing="10"
-            Padding="10,0"
+            Padding="10,10"
             VerticalOptions="Center">
-
 
             <Label
                 Text="Welcome to our Ticketsystem"
@@ -21,9 +20,9 @@
                 FontSize="28"
                 HorizontalOptions="Start"
                 VerticalOptions="Start"
-                Padding="0 0 40 0 "
+                Padding="0,0,0,50"
                 />
-           
+
             <Label
                 Padding="30,0"
                 Text="Enter Username"
@@ -32,11 +31,12 @@
                 HorizontalOptions="StartAndExpand"
                 />
             <Entry
-                Margin="30,0"
+                Margin="30,0,30,20"
                 Text="{Binding Username}"
                 IsPassword="False"
                 />
-            <Label
+
+            <Label       
                 Padding="30,0"
                 Text="Enter Password"
                 SemanticProperties.HeadingLevel="Level2"
@@ -44,19 +44,19 @@
                 HorizontalOptions="Start"
                  />
             <Entry
-                Margin="30, 0, 30, 50"
+                Margin="30,0,30,50"
                 Text="{Binding Password}"
                 IsPassword="True"
                  />
             <Button
+                Style="{StaticResource btn_primary}"
                 x:Name="Btn_primary_LoginBtn"
                 Text="Login"
                 Command="{Binding LoginCommand}"
                 HorizontalOptions="Center" 
                 WidthRequest="300"
-                BackgroundColor="#414BB2"
-                TextColor="White"
                 />
+
             <Label
                 Padding="30,0"
                 Text="or"
@@ -64,19 +64,25 @@
                 FontSize="15"
                 HorizontalOptions="Center"
                 />
+
             <Button
+                Style="{StaticResource btn_secondary}"
                 x:Name="Btn_secondary_CreateDevAccBtn"
                 Text="Create Developer Account"
-                Command="{Binding LoginCommand}"
+                Command="{Binding RegisterCommand}"
                 HorizontalOptions="Center" 
                 WidthRequest="300"
-                BackgroundColor="white"
-                TextColor="#414BB2"
-                BorderColor="#414BB2"
-                BorderWidth="1.5"
                 />
 
+            <Button
+                Style="{StaticResource btn_tertiary}"
+                x:Name="Btn_tertiary_ForgotPasswordBtn"
+                Text="Forgot password?"
+                Command="{Binding ForgotPasswordCommand}"
+                HorizontalOptions="Center" 
+                WidthRequest="300"
+                Padding="-160,-10,20,10"
+                />
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>

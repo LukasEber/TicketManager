@@ -12,11 +12,13 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>TicketManager.Client</ApplicationTitle>
+		<ApplicationTitle>Ticket Manager</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.ticketmanager.client</ApplicationId>
+		<ApplicationId>com.lukaseber.ticketmanager.client</ApplicationId>
 		<ApplicationIdGuid>93e4cc64-914f-4cd8-8724-aae118b8a0fd</ApplicationIdGuid>
+
+		<AssemblyCompany>Lukas Eber</AssemblyCompany>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -32,14 +34,12 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" />
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
-
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
 
@@ -53,14 +53,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Models\" />
-	  <Folder Include="Views\" />
+		<Folder Include="Resources\Images\" />
+		<Folder Include="ViewModels\CustomDeveloperViewModels\" />
+		<Folder Include="ViewModels\CustomCustomerViewModels\" />
+		<Folder Include="Views\CustomCustomerViews\" />
+		<Folder Include="Views\CustomDeveloperViews\" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="LoginPage.xaml.cs">
-	    <DependentUpon>LoginPage.xaml</DependentUpon>
-	  </Compile>
+		<Compile Update="Views\LoginPage.xaml.cs">
+			<DependentUpon>Views\LoginPage.xaml</DependentUpon>
+		</Compile>
 	</ItemGroup>
 
 </Project>

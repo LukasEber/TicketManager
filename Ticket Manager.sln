@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketManager.API", "TicketManager.API\TicketManager.API.csproj", "{CDED8544-82EF-41F2-9E1D-5A0925482BF5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketManager.Client", "TicketManager.Client\TicketManager.Client.csproj", "{8E5D545C-59D0-44D8-9D6C-D4ED72732EC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketManager.Client", "TicketManager.Client\TicketManager.Client.csproj", "{8E5D545C-59D0-44D8-9D6C-D4ED72732EC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

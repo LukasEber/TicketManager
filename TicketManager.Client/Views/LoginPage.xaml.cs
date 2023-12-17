@@ -1,4 +1,4 @@
-﻿namespace TicketManager.Client
+﻿namespace TicketManager.Client.Views
 {
     public partial class LoginPage : ContentPage
     {
