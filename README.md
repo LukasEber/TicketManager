@@ -1,2 +1,2 @@
 # Ticket Manager
-## Currently developing, Dokumentation will be available soon 
+## Currently developing, Documentation will be available soon 
