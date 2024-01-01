@@ -1,8 +1,7 @@
-﻿using TicketManager.Domain.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using TicketManager.API.Contracts;
-using TicketManager.API.Services;
 using TicketManager.API.Services.Interfaces;
+using TicketManager.Domain.Models;
 namespace TicketManager.API.Controllers
 {
     [ApiController]
@@ -22,7 +21,6 @@ namespace TicketManager.API.Controllers
                 Credentials credentials = new Credentials()
                 {
                     MailAddress = request.Credentials.MailAddress,
-                    Name = request.Credentials.Name,
                     Password = request.Credentials.Password
                 };
 
@@ -36,7 +34,7 @@ namespace TicketManager.API.Controllers
                     return BadRequest(new { message = "Invalid userdata" });
                 }
             }
-            catch(Exception ex)
+            catch (Exception)
             {
                 return BadRequest();
             }

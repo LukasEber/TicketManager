@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TicketManager.Domain.Models
+﻿namespace TicketManager.Domain.Models
 {
     public class Developer
     {
+        public required string Name { get; set; }
+
         public required Guid ID { get; set; }
 
         public required Credentials Credentials { get; set; }

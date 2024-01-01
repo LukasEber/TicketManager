@@ -1,13 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿
+/* Unmerged change from project 'TicketManager.Client (net7.0-windows10.0.19041.0)'
+Before:
+using System;
+After:
 using Microsoft.Toolkit.Mvvm.Input;
+using System;
+*/
+
+/* Unmerged change from project 'TicketManager.Client (net7.0-maccatalyst)'
+Before:
+using System;
+After:
+using Microsoft.Toolkit.Mvvm.Input;
+using System;
+*/
+
+/* Unmerged change from project 'TicketManager.Client (net7.0-ios)'
+Before:
+using System;
+After:
+using Microsoft.Toolkit.Mvvm.Input;
+using System;
+*/
+using Microsoft.Toolkit.Mvvm.Input;
+using System.Security;
+using System.Windows.Input;
 
 
 namespace TicketManager.Client.ViewModels
@@ -55,7 +72,6 @@ namespace TicketManager.Client.ViewModels
 
         public async Task<Task> LoginAsync()
         {
-
             return Task.CompletedTask;
         }
 

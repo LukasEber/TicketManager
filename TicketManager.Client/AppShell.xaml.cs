@@ -1,6 +1,4 @@
-﻿using Microsoft.Maui.Controls;
-
-namespace TicketManager.Client
+﻿namespace TicketManager.Client
 {
     public partial class AppShell : Shell
     {

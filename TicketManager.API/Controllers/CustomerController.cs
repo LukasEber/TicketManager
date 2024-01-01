@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using TicketManager.API.Contracts;
-using TicketManager.Domain.Models;
 using TicketManager.API.Services;
+using TicketManager.Domain.Models;
 
 namespace TicketManager.API.Controllers
 {
@@ -24,6 +23,7 @@ namespace TicketManager.API.Controllers
             {
                 Customer customer = new Customer()
                 {
+                    Name = request.Name,
                     ID = Guid.NewGuid(),
                     Credentials = request.Credentials,
                     DeveloperID = request.DeveloperID,
@@ -39,11 +39,11 @@ namespace TicketManager.API.Controllers
                         value: customer
                     );
             }
-            catch(Exception ex)
+            catch (Exception)
             {
                 return BadRequest();
             }
-           
+
         }
 
         [HttpPut("put/{id:guid}")]
@@ -53,6 +53,7 @@ namespace TicketManager.API.Controllers
             {
                 Customer customer = new Customer()
                 {
+                    Name = request.Name,
                     ID = request.ID,
                     Credentials = request.Credentials,
                     DeveloperID = request.DeveloperID,
@@ -81,7 +82,7 @@ namespace TicketManager.API.Controllers
                 Customer customer = _customerService.GetCustomer(id);
                 return Ok(customer);
             }
-            catch(Exception ex)
+            catch (Exception)
             {
                 return NotFound();
             }
@@ -95,7 +96,7 @@ namespace TicketManager.API.Controllers
                 _customerService.DeleteCustomer(id);
                 return NoContent();
             }
-            catch(Exception ex)
+            catch (Exception)
             {
                 return NotFound();
             }

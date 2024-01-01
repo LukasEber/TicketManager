@@ -54,10 +54,10 @@
 
 	<ItemGroup>
 		<Folder Include="Resources\Images\" />
-		<Folder Include="ViewModels\CustomDeveloperViewModels\" />
-		<Folder Include="ViewModels\CustomCustomerViewModels\" />
-		<Folder Include="Views\CustomCustomerViews\" />
-		<Folder Include="Views\CustomDeveloperViews\" />
+		<Folder Include="ViewModels\AdditionalDeveloperViewModels\" />
+		<Folder Include="ViewModels\AdditionalCustomerViewModels\" />
+		<Folder Include="Views\AdditionalCustomerViews\" />
+		<Folder Include="Views\AdditionalDeveloperViews\" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -42,7 +42,7 @@ namespace TicketManager.API.Controllers
                      ticket
                     );
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return BadRequest();
             }
@@ -75,7 +75,7 @@ namespace TicketManager.API.Controllers
                     new { id },
                     ticket);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 return NotFound();
@@ -90,7 +90,7 @@ namespace TicketManager.API.Controllers
                 Ticket ticket = _ticketservice.GetTicket(id);
                 return Ok(ticket);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return NotFound();
             }
@@ -104,7 +104,7 @@ namespace TicketManager.API.Controllers
                 _ticketservice.DeleteTicket(id);
                 return NoContent();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return NotFound();
             }

@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using TicketManager.Domain.Models;
-using TicketManager.Domain.Enums;
+﻿using Microsoft.AspNetCore.Mvc;
 using TicketManager.API.Contracts;
 using TicketManager.API.Services;
+using TicketManager.Domain.Models;
 
 namespace TicketManager.API.Controllers
 {
@@ -24,6 +22,8 @@ namespace TicketManager.API.Controllers
             {
                 Developer developer = new Developer()
                 {
+
+                    Name = request.Name,
                     ID = Guid.NewGuid(),
                     Credentials = request.Credentials,
                     Tickets = request.Tickets,
@@ -41,7 +41,7 @@ namespace TicketManager.API.Controllers
                     value: developer
                     );
             }
-            catch(Exception ex)
+            catch (Exception)
             {
                 return BadRequest();
             }
@@ -54,6 +54,7 @@ namespace TicketManager.API.Controllers
             {
                 Developer developer = new Developer()
                 {
+                    Name = request.Name,
                     ID = request.ID,
                     Credentials = request.Credentials,
                     Tickets = request.Tickets,
@@ -70,7 +71,7 @@ namespace TicketManager.API.Controllers
                     new { id },
                     developer);
             }
-            catch(Exception ex)
+            catch (Exception)
             {
                 return NotFound();
             }
@@ -84,7 +85,7 @@ namespace TicketManager.API.Controllers
                 Developer developer = _developerService.GetDeveloper(id);
                 return Ok(developer);
             }
-            catch(Exception ex)
+            catch (Exception)
             {
                 return NotFound();
             }
@@ -98,7 +99,7 @@ namespace TicketManager.API.Controllers
                 _developerService.DeleteDeveloper(id);
                 return NoContent();
             }
-            catch(Exception ex)
+            catch (Exception)
             {
                 return NotFound();
             }

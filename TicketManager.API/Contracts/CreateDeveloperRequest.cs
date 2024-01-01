@@ -4,11 +4,12 @@ namespace TicketManager.API.Contracts
 {
     public record CreateDeveloperRequest
     (
+        string Name,
         Credentials Credentials,
         List<Ticket>? Tickets,
         int TicketCount,
         List<Customer>? Customers,
         int CustomerCount,
-        List<Application>? Applications 
+        List<Application>? Applications
     );
 }
