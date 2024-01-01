@@ -16,6 +16,7 @@ namespace TicketManager.API.Controllers
         [HttpPost()]
         public IActionResult Login(LoginRequest request)
         {
+            //ToDo: Return user that has been logged in 
             try
             {
                 Credentials credentials = new Credentials()

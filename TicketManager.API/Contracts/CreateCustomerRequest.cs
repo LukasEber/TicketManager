@@ -8,6 +8,7 @@ namespace TicketManager.API.Contracts
         Credentials Credentials,
         Guid DeveloperID,
         int TicketCount,
-        List<Ticket> Tickets
+        List<Ticket> Tickets,
+        List<Application>? Applications
     );
 }

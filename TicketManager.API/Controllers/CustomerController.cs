@@ -28,7 +28,8 @@ namespace TicketManager.API.Controllers
                     Credentials = request.Credentials,
                     DeveloperID = request.DeveloperID,
                     TicketCount = request.TicketCount,
-                    Tickets = request.Tickets
+                    Tickets = request.Tickets,
+                    Applications = request.Applications
                 };
 
                 _customerService.CreateCustomer(customer);
@@ -58,7 +59,8 @@ namespace TicketManager.API.Controllers
                     Credentials = request.Credentials,
                     DeveloperID = request.DeveloperID,
                     TicketCount = request.TicketCount,
-                    Tickets = request.Tickets
+                    Tickets = request.Tickets,
+                    Applications = request.Applications
                 };
 
                 _customerService.UpdateCustomer(customer);

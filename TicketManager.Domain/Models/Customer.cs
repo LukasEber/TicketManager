@@ -13,5 +13,7 @@
         public required int TicketCount { get; set; }
 
         public required List<Ticket> Tickets { get; set; }
+
+        public List<Application>? Applications { get; set; }
     }
 }
