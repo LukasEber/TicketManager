@@ -23,7 +23,7 @@ namespace TicketManager.Application
                 Credentials = new Credentials { MailAddress = "testcustomer@outlook.de", Password = "jjfiojfdsjfdij" },
                 Name = "Customer Test 1",
                 ID = Guid.NewGuid(),
-                DeveloperID = Guid.NewGuid(),
+                Developer = new Developer(),
                 TicketCount = 2,
                 Tickets = new List<Ticket>
                 {
@@ -63,7 +63,7 @@ namespace TicketManager.Application
                 Credentials = new Credentials { MailAddress = "testcustomer@outlook.de", Password = "jjfiojfdsjfdij" },
                 Name = "Customer Test 1",
                 ID = Guid.NewGuid(),
-                DeveloperID = Guid.NewGuid(),
+                Developer = new Developer(),
                 TicketCount = 2,
                 Tickets = new List<Ticket>
                 {

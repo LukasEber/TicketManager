@@ -32,8 +32,10 @@ namespace TicketManager.API.Persistence
         }
 
         public DbSet<Ticket> Tickets { get; set; }
-        public DbSet<Application> Applications { get; set; }
 
+        public DbSet<Customer> Customers { get; set; }
+
+        public DbSet<Developer> Developers { get; set; }
 
     }
 }

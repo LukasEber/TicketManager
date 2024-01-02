@@ -1,9 +1,12 @@
-﻿namespace TicketManager.Domain.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace TicketManager.Domain.Models
 {
     public class Credentials
     {
-        public required string MailAddress { get; set; }
+        [Key]
+        public  string MailAddress { get; set; }
 
-        public required string Password { get; set; }
+        public  string Password { get; set; }
     }
 }

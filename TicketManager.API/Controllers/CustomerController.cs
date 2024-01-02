@@ -26,7 +26,7 @@ namespace TicketManager.API.Controllers
                     Name = request.Name,
                     ID = Guid.NewGuid(),
                     Credentials = request.Credentials,
-                    DeveloperID = request.DeveloperID,
+                    Developer = request.Developer,
                     TicketCount = request.TicketCount,
                     Tickets = request.Tickets,
                     Applications = request.Applications
@@ -57,7 +57,7 @@ namespace TicketManager.API.Controllers
                     Name = request.Name,
                     ID = request.ID,
                     Credentials = request.Credentials,
-                    DeveloperID = request.DeveloperID,
+                    Developer = request.Developer,
                     TicketCount = request.TicketCount,
                     Tickets = request.Tickets,
                     Applications = request.Applications
