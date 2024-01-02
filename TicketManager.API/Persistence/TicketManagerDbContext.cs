@@ -28,7 +28,7 @@ namespace TicketManager.API.Persistence
                     v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList()
                 );
 
-            //TODO: weiter mit Dev & Cust
+            //TODO: next step: dev & cust migration config
         }
 
         public DbSet<Ticket> Tickets { get; set; }
