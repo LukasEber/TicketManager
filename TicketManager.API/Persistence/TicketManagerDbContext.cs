@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.Identity.Client;
 using TicketManager.Domain.Models;
 
@@ -6,18 +7,21 @@ namespace TicketManager.API.Persistence
 {
     public class TicketManagerDbContext : DbContext
     {
-        private readonly IConfiguration _configuration;
-        public TicketManagerDbContext(IConfiguration config)
+        public TicketManagerDbContext(DbContextOptions<TicketManagerDbContext> options)
+            : base(options)
         {
-            _configuration = config;
         }
+
+        public DbSet<Ticket> Tickets { get; set; }
+
+        public DbSet<Customer> Customers { get; set; }
+
+        public DbSet<Developer> Developers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer(_configuration.GetConnectionString("DatabaseConnection"));
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -28,12 +32,5 @@ namespace TicketManager.API.Persistence
                     v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList()
                 );
         }
-
-        public DbSet<Ticket> Tickets { get; set; }
-
-        public DbSet<Customer> Customers { get; set; }
-
-        public DbSet<Developer> Developers { get; set; }
-
     }
 }

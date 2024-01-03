@@ -1,4 +1,7 @@
 
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using TicketManager.API.Persistence;
 using TicketManager.API.Services;
 
 namespace TicketManager.API
@@ -10,12 +13,19 @@ namespace TicketManager.API
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddControllers();
-            builder.Services.AddSingleton<ITicketService, TicketService>();
-            builder.Services.AddSingleton<ICustomerService, CustomerService>();
-            builder.Services.AddSingleton<IDeveloperService, DeveloperService>();
+            builder.Services.AddScoped<ITicketService, TicketService>();
+            builder.Services.AddScoped<ICustomerService, CustomerService>();
+            builder.Services.AddScoped<IDeveloperService, DeveloperService>();
+
+            var connection = builder.Configuration.GetConnectionString("DatabaseConnection");
+
 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddDbContext<TicketManagerDbContext>(options =>
+            {
+                options.UseSqlServer(connection);
+            });
 
             var app = builder.Build();
             {

@@ -18,7 +18,7 @@ namespace TicketManager.API.Services
 
         public Developer GetDeveloper(Guid id)
         {
-            
+            return new Developer();
         }
 
         public void UpdateDeveloper(Developer developer)

@@ -17,7 +17,7 @@ namespace TicketManager.API.Services
 
         public Customer GetCustomer(Guid id)
         {
-           
+            return new Customer();
         }
 
         public void UpdateCustomer(Customer customer)

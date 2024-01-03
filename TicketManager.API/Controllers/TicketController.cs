@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TicketManager.API.Contracts;
+using TicketManager.API.Persistence;
 using TicketManager.API.Services;
 using TicketManager.Domain.Models;
 
@@ -10,9 +11,11 @@ namespace TicketManager.API.Controllers
     public class TicketController : ControllerBase
     {
         private readonly ITicketService _ticketservice;
-        public TicketController(ITicketService ticketservice)
+        public TicketManagerDbContext Context { get; private set; }
+        public TicketController(ITicketService ticketservice, TicketManagerDbContext dbContext)
         {
             _ticketservice = ticketservice;
+            Context = dbContext;
         }
 
         [HttpPost("post")]
