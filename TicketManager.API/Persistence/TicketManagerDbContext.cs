@@ -27,8 +27,6 @@ namespace TicketManager.API.Persistence
                     v => string.Join(',', v),
                     v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList()
                 );
-
-            //TODO: next step: dev & cust migration config
         }
 
         public DbSet<Ticket> Tickets { get; set; }
