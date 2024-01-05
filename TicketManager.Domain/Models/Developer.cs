@@ -2,20 +2,11 @@
 {
     public class Developer
     {
-        public  string Name { get; set; }
-
-        public  Guid ID { get; set; }
-
-        public  Credentials Credentials { get; set; }
-
-        public List<Ticket>? Tickets { get; set; }
-
-        public  int TicketCount { get; set; }
-
-        public List<Customer>? Customers { get; set; }
-
-        public  int CustomerCount { get; set; }
-
-        public List<Application>? Applications { get; set; }
+        public string Name { get; set; }
+        public Guid ID { get; set; }
+        public Credentials Credentials { get; set; }
+        public ICollection<Ticket> Tickets { get; set; }
+        public ICollection<Customer> AssignedCustomers { get; set; } 
+        public ICollection<string>? Applications { get; set; }
     }
 }

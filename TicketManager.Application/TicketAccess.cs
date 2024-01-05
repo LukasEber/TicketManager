@@ -19,10 +19,10 @@ namespace TicketManager.Application
         {
             return new Ticket
             {
-                Application = new Domain.Models.Application { Name = "Ticket Manager" },
+                Application = "Ticket Manager",
                 ID = Guid.NewGuid(),
-                DeveloperID = Guid.NewGuid(),
-                CustomerID = Guid.NewGuid(),
+                AssignedDeveloperID = Guid.NewGuid(),
+                AssignedCustomerID = Guid.NewGuid(),
                 Title = "Test Ticket",
                 Description = "Lorem ipsum dolor sit amet. Thats the description of the first TestTicket",
                 Priority = Domain.Enums.Priority.Low,
@@ -36,10 +36,10 @@ namespace TicketManager.Application
         {
             return new Ticket
             {
-                Application = new Domain.Models.Application { Name = "Ticket Manager updated" },
+                Application = "Ticket Manager updated",
                 ID = Guid.NewGuid(),
-                DeveloperID = Guid.NewGuid(),
-                CustomerID = Guid.NewGuid(),
+                AssignedDeveloperID = Guid.NewGuid(),
+                AssignedCustomerID = Guid.NewGuid(),
                 Title = "Test Ticket",
                 Description = "Lorem ipsum dolor sit amet. Thats the updated description of the first TestTicket",
                 Priority = Domain.Enums.Priority.Low,

@@ -12,7 +12,7 @@ using TicketManager.API.Persistence;
 namespace TicketManager.API.Migrations
 {
     [DbContext(typeof(TicketManagerDbContext))]
-    [Migration("20240102212758_InitialCreate")]
+    [Migration("20240103215546_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -24,26 +24,6 @@ namespace TicketManager.API.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("TicketManager.Domain.Models.Application", b =>
-                {
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<Guid?>("CustomerID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("DeveloperID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Name");
-
-                    b.HasIndex("CustomerID");
-
-                    b.HasIndex("DeveloperID");
-
-                    b.ToTable("Application");
-                });
 
             modelBuilder.Entity("TicketManager.Domain.Models.Credentials", b =>
                 {
@@ -65,19 +45,22 @@ namespace TicketManager.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Applications")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("AssignedDeveloperID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("CredentialsMailAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<Guid>("DeveloperID")
+                    b.Property<Guid?>("DeveloperID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TicketCount")
-                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
@@ -94,19 +77,16 @@ namespace TicketManager.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Applications")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CredentialsMailAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("CustomerCount")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TicketCount")
-                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
@@ -121,9 +101,15 @@ namespace TicketManager.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("ApplicationName")
+                    b.Property<string>("Application")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("AssignedCustomerID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AssignedDeveloperID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Attachments")
                         .IsRequired()
@@ -133,14 +119,14 @@ namespace TicketManager.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("CustomerID")
+                    b.Property<Guid?>("CustomerID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("DeveloperID")
+                    b.Property<Guid?>("DeveloperID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Priority")
@@ -155,24 +141,11 @@ namespace TicketManager.API.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("ApplicationName");
-
                     b.HasIndex("CustomerID");
 
                     b.HasIndex("DeveloperID");
 
                     b.ToTable("Tickets");
-                });
-
-            modelBuilder.Entity("TicketManager.Domain.Models.Application", b =>
-                {
-                    b.HasOne("TicketManager.Domain.Models.Customer", null)
-                        .WithMany("Applications")
-                        .HasForeignKey("CustomerID");
-
-                    b.HasOne("TicketManager.Domain.Models.Developer", null)
-                        .WithMany("Applications")
-                        .HasForeignKey("DeveloperID");
                 });
 
             modelBuilder.Entity("TicketManager.Domain.Models.Customer", b =>
@@ -183,15 +156,11 @@ namespace TicketManager.API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TicketManager.Domain.Models.Developer", "Developer")
-                        .WithMany("Customers")
-                        .HasForeignKey("DeveloperID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("TicketManager.Domain.Models.Developer", null)
+                        .WithMany("AssignedCustomers")
+                        .HasForeignKey("DeveloperID");
 
                     b.Navigation("Credentials");
-
-                    b.Navigation("Developer");
                 });
 
             modelBuilder.Entity("TicketManager.Domain.Models.Developer", b =>
@@ -207,39 +176,23 @@ namespace TicketManager.API.Migrations
 
             modelBuilder.Entity("TicketManager.Domain.Models.Ticket", b =>
                 {
-                    b.HasOne("TicketManager.Domain.Models.Application", "Application")
-                        .WithMany()
-                        .HasForeignKey("ApplicationName")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("TicketManager.Domain.Models.Customer", null)
                         .WithMany("Tickets")
-                        .HasForeignKey("CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CustomerID");
 
                     b.HasOne("TicketManager.Domain.Models.Developer", null)
                         .WithMany("Tickets")
-                        .HasForeignKey("DeveloperID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Application");
+                        .HasForeignKey("DeveloperID");
                 });
 
             modelBuilder.Entity("TicketManager.Domain.Models.Customer", b =>
                 {
-                    b.Navigation("Applications");
-
                     b.Navigation("Tickets");
                 });
 
             modelBuilder.Entity("TicketManager.Domain.Models.Developer", b =>
                 {
-                    b.Navigation("Applications");
-
-                    b.Navigation("Customers");
+                    b.Navigation("AssignedCustomers");
 
                     b.Navigation("Tickets");
                 });

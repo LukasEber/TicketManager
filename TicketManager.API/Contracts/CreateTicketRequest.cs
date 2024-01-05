@@ -5,14 +5,14 @@ namespace TicketManager.API.Contracts
 {
     public record CreateTicketRequest
     (
-        Guid CustomerID,
-        Guid DeveloperID,
+        Guid AssignedCustomerID,
+        Guid AssignedDeveloperID,
         string Title,
         string Description,
-        Application Application,
+        string Application,
         Priority Priority,
         Status Status,
-        List<string> Attachments,
+        ICollection<string> Attachments,
         string Comment
     );
 }

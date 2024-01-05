@@ -21,9 +21,7 @@ namespace TicketManager.Application
             {
                 Credentials = new Credentials { MailAddress = "dev@outlook.de", Password = "dopfjdjfisjfpie" },
                 Name = "Dev Test 1",
-                ID = Guid.NewGuid(),
-                TicketCount = 2,
-                CustomerCount = 2
+                ID = Guid.NewGuid()
             };
         }
 

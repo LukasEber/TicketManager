@@ -23,16 +23,15 @@ namespace TicketManager.Application
                 Credentials = new Credentials { MailAddress = "testcustomer@outlook.de", Password = "jjfiojfdsjfdij" },
                 Name = "Customer Test 1",
                 ID = Guid.NewGuid(),
-                Developer = new Developer(),
-                TicketCount = 2,
+                AssignedDeveloperID = Guid.NewGuid(),
                 Tickets = new List<Ticket>
                 {
                     new Ticket
                     {
-                        Application = new Domain.Models.Application { Name = "Ticket Manager" },
+                        Application = "Ticket Manager",
                         ID = Guid.NewGuid(),
-                        DeveloperID = Guid.NewGuid(),
-                        CustomerID = Guid.NewGuid(),
+                        AssignedDeveloperID = Guid.NewGuid(),
+                        AssignedCustomerID = Guid.NewGuid(),
                         Title = "Test Ticket",
                         Description = "Lorem ipsum dolor sit amet. Thats the description of the first TestTicket",
                         Priority = Domain.Enums.Priority.Low,
@@ -42,10 +41,10 @@ namespace TicketManager.Application
                     },
                     new Ticket
                     {
-                        Application = new Domain.Models.Application { Name = "Ticket Manager2" },
+                        Application = "Ticket Manager2",
                         ID = Guid.NewGuid(),
-                        DeveloperID = Guid.NewGuid(),
-                        CustomerID = Guid.NewGuid(),
+                        AssignedCustomerID = Guid.NewGuid(),
+                        AssignedDeveloperID = Guid.NewGuid(),
                         Title = "Test Ticket",
                         Description = "Lorem ipsum dolor sit amet. Thats the description of the second TestTicket",
                         Priority = Domain.Enums.Priority.Low,
@@ -63,16 +62,15 @@ namespace TicketManager.Application
                 Credentials = new Credentials { MailAddress = "testcustomer@outlook.de", Password = "jjfiojfdsjfdij" },
                 Name = "Customer Test 1",
                 ID = Guid.NewGuid(),
-                Developer = new Developer(),
-                TicketCount = 2,
+                AssignedDeveloperID = Guid.NewGuid(),
                 Tickets = new List<Ticket>
                 {
                     new Ticket
                     {
-                        Application = new Domain.Models.Application { Name = " Updated Ticket Manager" },
+                        Application = " Updated Ticket Manager",
                         ID = Guid.NewGuid(),
-                        DeveloperID = Guid.NewGuid(),
-                        CustomerID = Guid.NewGuid(),
+                        AssignedCustomerID = Guid.NewGuid(),
+                        AssignedDeveloperID = Guid.NewGuid(),
                         Title = "Test Ticket",
                         Description = "Lorem ipsum dolor sit amet. Thats the updated description of the first TestTicket",
                         Priority = Domain.Enums.Priority.Low,
@@ -82,10 +80,10 @@ namespace TicketManager.Application
                     },
                     new Ticket
                     {
-                        Application = new Domain.Models.Application { Name = "Ticket Manager2" },
+                        Application = "Ticket Manager2",
                         ID = Guid.NewGuid(),
-                        DeveloperID = Guid.NewGuid(),
-                        CustomerID = Guid.NewGuid(),
+                        AssignedCustomerID = Guid.NewGuid(),
+                        AssignedDeveloperID = Guid.NewGuid(),
                         Title = "Test Ticket",
                         Description = "Lorem ipsum dolor sit amet. Thats the updated description of the second TestTicket",
                         Priority = Domain.Enums.Priority.Low,

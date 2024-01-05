@@ -6,9 +6,8 @@ namespace TicketManager.API.Contracts
     (
         string Name,
         Credentials Credentials,
-        Developer Developer,
-        int TicketCount,
-        List<Ticket> Tickets,
-        List<Application>? Applications
+        Guid AssignedDeveloperID,
+        ICollection<Ticket> Tickets,
+        ICollection<string>? Applications
     );
 }

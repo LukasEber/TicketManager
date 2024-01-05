@@ -27,9 +27,7 @@ namespace TicketManager.API.Controllers
                     ID = Guid.NewGuid(),
                     Credentials = request.Credentials,
                     Tickets = request.Tickets,
-                    TicketCount = request.TicketCount,
-                    Customers = request.Customers,
-                    CustomerCount = request.CustomerCount,
+                    AssignedCustomers = request.AssignedCustomers,
                     Applications = request.Applications
                 };
 
@@ -58,9 +56,7 @@ namespace TicketManager.API.Controllers
                     ID = request.ID,
                     Credentials = request.Credentials,
                     Tickets = request.Tickets,
-                    TicketCount = request.TicketCount,
-                    Customers = request.Customers,
-                    CustomerCount = request.CustomerCount,
+                    AssignedCustomers = request.AssignedCustomers,
                     Applications = request.Applications
                 };
 

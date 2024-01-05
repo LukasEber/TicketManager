@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Options;
 using Microsoft.Identity.Client;
 using TicketManager.Domain.Models;
@@ -29,8 +30,34 @@ namespace TicketManager.API.Persistence
                 .Property(t => t.Attachments)
                 .HasConversion(
                     v => string.Join(',', v),
-                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList()
+                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList(),
+                    new ValueComparer<ICollection<string>>(
+                        (c1, c2) => c1.SequenceEqual(c2),
+                        c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+                        c => c.ToList())
                 );
+
+            modelBuilder.Entity<Customer>()
+                .Property(t => t.Applications)
+                .HasConversion(
+                    v => string.Join(',', v),
+                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList(),
+                    new ValueComparer<ICollection<string>>(
+                        (c1, c2) => c1.SequenceEqual(c2),
+                        c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+                        c => c.ToList())
+                );
+
+            modelBuilder.Entity<Developer>()
+               .Property(t => t.Applications)
+               .HasConversion(
+                   v => string.Join(',', v),
+                   v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList(),
+                   new ValueComparer<ICollection<string>>(
+                       (c1, c2) => c1.SequenceEqual(c2),
+                       c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+                       c => c.ToList())
+               );
         }
     }
 }

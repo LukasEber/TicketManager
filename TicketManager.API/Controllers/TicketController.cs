@@ -26,8 +26,8 @@ namespace TicketManager.API.Controllers
                 Ticket ticket = new Ticket()
                 {
                     ID = Guid.NewGuid(),
-                    CustomerID = request.CustomerID,
-                    DeveloperID = request.DeveloperID,
+                    AssignedCustomerID = request.AssignedCustomerID,
+                    AssignedDeveloperID = request.AssignedDeveloperID,
                     Title = request.Title,
                     Description = request.Description,
                     Application = request.Application,
@@ -60,8 +60,8 @@ namespace TicketManager.API.Controllers
                 Ticket ticket = new Ticket()
                 {
                     ID = request.ID,
-                    CustomerID = request.CustomerID,
-                    DeveloperID = request.DeveloperID,
+                    AssignedCustomerID = request.AssignedCustomerID,
+                    AssignedDeveloperID = request.AssignedDeveloperID,
                     Title = request.Title,
                     Description = request.Description,
                     Application = request.Application,
