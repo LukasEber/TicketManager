@@ -13,15 +13,16 @@ namespace TicketManager.API
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddControllers();
+            //register services
             builder.Services.AddScoped<ITicketService, TicketService>();
             builder.Services.AddScoped<ICustomerService, CustomerService>();
             builder.Services.AddScoped<IDeveloperService, DeveloperService>();
-
+            builder.Services.AddScoped<ILoginService, LoginService>();
+            //add database connection
             var connection = builder.Configuration.GetConnectionString("DatabaseConnection");
-
-
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            //register database context
             builder.Services.AddDbContext<TicketManagerDbContext>(options =>
             {
                 options.UseSqlServer(connection);

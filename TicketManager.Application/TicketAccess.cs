@@ -21,8 +21,8 @@ namespace TicketManager.Application
             {
                 Application = "Ticket Manager",
                 ID = Guid.NewGuid(),
-                AssignedDeveloperID = Guid.NewGuid(),
-                AssignedCustomerID = Guid.NewGuid(),
+                DeveloperID = Guid.NewGuid(),
+                CustomerID = Guid.NewGuid(),
                 Title = "Test Ticket",
                 Description = "Lorem ipsum dolor sit amet. Thats the description of the first TestTicket",
                 Priority = Domain.Enums.Priority.Low,
@@ -38,8 +38,8 @@ namespace TicketManager.Application
             {
                 Application = "Ticket Manager updated",
                 ID = Guid.NewGuid(),
-                AssignedDeveloperID = Guid.NewGuid(),
-                AssignedCustomerID = Guid.NewGuid(),
+                DeveloperID = Guid.NewGuid(),
+                CustomerID = Guid.NewGuid(),
                 Title = "Test Ticket",
                 Description = "Lorem ipsum dolor sit amet. Thats the updated description of the first TestTicket",
                 Priority = Domain.Enums.Priority.Low,

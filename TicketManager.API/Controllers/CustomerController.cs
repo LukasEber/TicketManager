@@ -16,7 +16,7 @@ namespace TicketManager.API.Controllers
             _customerService = customerservice;
         }
 
-        [HttpPost("post")]
+        [HttpPost("create")]
         public IActionResult CreateCustomer(CreateCustomerRequest request)
         {
             try
@@ -26,7 +26,7 @@ namespace TicketManager.API.Controllers
                     Name = request.Name,
                     ID = Guid.NewGuid(),
                     Credentials = request.Credentials,
-                    AssignedDeveloperID = request.AssignedDeveloperID,
+                    DeveloperID = request.DeveloperID,
                     Tickets = request.Tickets,
                     Applications = request.Applications
                 };
@@ -46,7 +46,7 @@ namespace TicketManager.API.Controllers
 
         }
 
-        [HttpPut("put/{id:guid}")]
+        [HttpPut("update/{id:guid}")]
         public IActionResult UpdateCustomer(Guid id, Customer request)
         {
             try
@@ -56,7 +56,7 @@ namespace TicketManager.API.Controllers
                     Name = request.Name,
                     ID = request.ID,
                     Credentials = request.Credentials,
-                    AssignedDeveloperID = request.AssignedDeveloperID,
+                    DeveloperID = request.DeveloperID,
                     Tickets = request.Tickets,
                     Applications = request.Applications
                 };

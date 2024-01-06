@@ -1,9 +1,9 @@
 ﻿using TicketManager.Domain.Models;
 
-namespace TicketManager.API.Services.Interfaces
+namespace TicketManager.API.Services
 {
     public interface ILoginService
     {
-        public bool Login(Credentials credentials);
+        public object Login(Credentials credentials);
     }
 }

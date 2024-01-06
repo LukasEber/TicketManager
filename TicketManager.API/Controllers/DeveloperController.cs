@@ -15,7 +15,7 @@ namespace TicketManager.API.Controllers
             _developerService = developerservice;
         }
 
-        [HttpPost("post")]
+        [HttpPost("create")]
         public IActionResult CreateDeveloper(CreateDeveloperRequest request)
         {
             try
@@ -45,7 +45,7 @@ namespace TicketManager.API.Controllers
             }
         }
 
-        [HttpPut("put/{id:guid}")]
+        [HttpPut("update/{id:guid}")]
         public IActionResult UpdateDeveloper(Guid id, Developer request)
         {
             try
@@ -60,12 +60,12 @@ namespace TicketManager.API.Controllers
                     Applications = request.Applications
                 };
 
-                _developerService.UpdateDeveloper(developer);
+                var updated = _developerService.UpdateDeveloper(developer);
 
                 return CreatedAtAction(
                     nameof(GetDeveloper),
                     new { id },
-                    developer);
+                    updated);
             }
             catch (Exception)
             {

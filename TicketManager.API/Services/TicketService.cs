@@ -19,10 +19,10 @@ namespace TicketManager.API.Services
 
         public void DeleteTicket(Guid id)
         {
-            var ticket = _dbContext.Tickets.Find(id);
-            if (ticket != null)
+            var ticketToDelete = _dbContext.Tickets.Find(id);
+            if (ticketToDelete != null)
             {
-                _dbContext.Tickets.Remove(ticket);
+                _dbContext.Tickets.Remove(ticketToDelete);
                 _dbContext.SaveChanges();
             }
         }

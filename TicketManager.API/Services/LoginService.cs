@@ -1,16 +1,36 @@
-﻿using TicketManager.API.Services.Interfaces;
+﻿using TicketManager.API.Persistence;
+using TicketManager.API.Services;
 using TicketManager.Domain.Models;
 
 namespace TicketManager.API.Services
 {
     public class LoginService : ILoginService
     {
-        public bool Login(Credentials credentials)
+        private readonly TicketManagerDbContext _dbContext;
+        public LoginService(TicketManagerDbContext dbContext)
         {
-            //check Developer and customer db
-            //generate JWT Token based on account type 
-            //return Token and account if succeded or error if not
-            return true;
+            _dbContext = dbContext;
+        }
+        public object Login(Credentials credentials)
+        {
+            var customer = _dbContext.Customers.SingleOrDefault(c => c.Credentials.MailAddress == credentials.MailAddress && c.Credentials.Password == credentials.Password);
+            if (customer != null)
+            {
+
+                return customer;
+
+
+            }
+            var developer = _dbContext.Developers.SingleOrDefault(d => d.Credentials.MailAddress == credentials.MailAddress && d.Credentials.Password == credentials.Password);
+            if (developer != null)
+            {
+
+
+                return developer;
+
+
+            }
+            return null;
         }
     }
 }

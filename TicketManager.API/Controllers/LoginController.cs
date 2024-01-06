@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TicketManager.API.Contracts;
-using TicketManager.API.Services.Interfaces;
+using TicketManager.API.Services;
 using TicketManager.Domain.Models;
 namespace TicketManager.API.Controllers
 {
@@ -13,10 +13,9 @@ namespace TicketManager.API.Controllers
         {
             _loginservice = loginservice;
         }
-        [HttpPost()]
+        [HttpPost("auth")]
         public IActionResult Login(LoginRequest request)
         {
-            //ToDo: Return user that has been logged in 
             try
             {
                 Credentials credentials = new Credentials()
@@ -25,14 +24,14 @@ namespace TicketManager.API.Controllers
                     Password = request.Credentials.Password
                 };
 
-                bool credentialsValid = _loginservice.Login(credentials);
-                if (credentialsValid)
+                object user = _loginservice.Login(credentials);
+                if (user != null)
                 {
-                    return Ok();
+                    return Ok(user);
                 }
                 else
                 {
-                    return BadRequest(new { message = "Invalid userdata" });
+                    return Unauthorized(new { message = "Invalid userdata" });
                 }
             }
             catch (Exception)

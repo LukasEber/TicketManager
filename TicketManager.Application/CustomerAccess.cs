@@ -23,15 +23,15 @@ namespace TicketManager.Application
                 Credentials = new Credentials { MailAddress = "testcustomer@outlook.de", Password = "jjfiojfdsjfdij" },
                 Name = "Customer Test 1",
                 ID = Guid.NewGuid(),
-                AssignedDeveloperID = Guid.NewGuid(),
+                DeveloperID = Guid.NewGuid(),
                 Tickets = new List<Ticket>
                 {
                     new Ticket
                     {
                         Application = "Ticket Manager",
                         ID = Guid.NewGuid(),
-                        AssignedDeveloperID = Guid.NewGuid(),
-                        AssignedCustomerID = Guid.NewGuid(),
+                        DeveloperID = Guid.NewGuid(),
+                        CustomerID = Guid.NewGuid(),
                         Title = "Test Ticket",
                         Description = "Lorem ipsum dolor sit amet. Thats the description of the first TestTicket",
                         Priority = Domain.Enums.Priority.Low,
@@ -43,8 +43,8 @@ namespace TicketManager.Application
                     {
                         Application = "Ticket Manager2",
                         ID = Guid.NewGuid(),
-                        AssignedCustomerID = Guid.NewGuid(),
-                        AssignedDeveloperID = Guid.NewGuid(),
+                        CustomerID = Guid.NewGuid(),
+                        DeveloperID = Guid.NewGuid(),
                         Title = "Test Ticket",
                         Description = "Lorem ipsum dolor sit amet. Thats the description of the second TestTicket",
                         Priority = Domain.Enums.Priority.Low,
@@ -62,15 +62,15 @@ namespace TicketManager.Application
                 Credentials = new Credentials { MailAddress = "testcustomer@outlook.de", Password = "jjfiojfdsjfdij" },
                 Name = "Customer Test 1",
                 ID = Guid.NewGuid(),
-                AssignedDeveloperID = Guid.NewGuid(),
+                DeveloperID = Guid.NewGuid(),
                 Tickets = new List<Ticket>
                 {
                     new Ticket
                     {
                         Application = " Updated Ticket Manager",
                         ID = Guid.NewGuid(),
-                        AssignedCustomerID = Guid.NewGuid(),
-                        AssignedDeveloperID = Guid.NewGuid(),
+                        CustomerID = Guid.NewGuid(),
+                        DeveloperID = Guid.NewGuid(),
                         Title = "Test Ticket",
                         Description = "Lorem ipsum dolor sit amet. Thats the updated description of the first TestTicket",
                         Priority = Domain.Enums.Priority.Low,
@@ -82,8 +82,8 @@ namespace TicketManager.Application
                     {
                         Application = "Ticket Manager2",
                         ID = Guid.NewGuid(),
-                        AssignedCustomerID = Guid.NewGuid(),
-                        AssignedDeveloperID = Guid.NewGuid(),
+                        CustomerID = Guid.NewGuid(),
+                        DeveloperID = Guid.NewGuid(),
                         Title = "Test Ticket",
                         Description = "Lorem ipsum dolor sit amet. Thats the updated description of the second TestTicket",
                         Priority = Domain.Enums.Priority.Low,

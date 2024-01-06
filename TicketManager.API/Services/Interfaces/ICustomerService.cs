@@ -10,6 +10,6 @@ namespace TicketManager.API.Services
 
         public void DeleteCustomer(Guid id);
 
-        public void UpdateCustomer(Customer customer);
+        public Customer UpdateCustomer(Customer customer);
     }
 }

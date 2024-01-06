@@ -10,7 +10,7 @@ namespace TicketManager.API.Services
 
         public void DeleteDeveloper(Guid id);
 
-        public void UpdateDeveloper(Developer developer);
+        public Developer UpdateDeveloper(Developer developer);
 
     }
 }

@@ -11,14 +11,12 @@ namespace TicketManager.API.Controllers
     public class TicketController : ControllerBase
     {
         private readonly ITicketService _ticketservice;
-        public TicketManagerDbContext Context { get; private set; }
-        public TicketController(ITicketService ticketservice, TicketManagerDbContext dbContext)
+        public TicketController(ITicketService ticketservice)
         {
             _ticketservice = ticketservice;
-            Context = dbContext;
         }
 
-        [HttpPost("post")]
+        [HttpPost("create")]
         public IActionResult CreateTicket(CreateTicketRequest request)
         {
             try
@@ -26,8 +24,8 @@ namespace TicketManager.API.Controllers
                 Ticket ticket = new Ticket()
                 {
                     ID = Guid.NewGuid(),
-                    AssignedCustomerID = request.AssignedCustomerID,
-                    AssignedDeveloperID = request.AssignedDeveloperID,
+                    CustomerID = request.CustomerID,
+                    DeveloperID = request.DeveloperID,
                     Title = request.Title,
                     Description = request.Description,
                     Application = request.Application,
@@ -52,7 +50,7 @@ namespace TicketManager.API.Controllers
 
         }
 
-        [HttpPut("put/{id:guid}")]
+        [HttpPut("update/{id:guid}")]
         public IActionResult UpdateTicket(Guid id, Ticket request)
         {
             try
@@ -60,8 +58,8 @@ namespace TicketManager.API.Controllers
                 Ticket ticket = new Ticket()
                 {
                     ID = request.ID,
-                    AssignedCustomerID = request.AssignedCustomerID,
-                    AssignedDeveloperID = request.AssignedDeveloperID,
+                    CustomerID = request.CustomerID,
+                    DeveloperID = request.DeveloperID,
                     Title = request.Title,
                     Description = request.Description,
                     Application = request.Application,
