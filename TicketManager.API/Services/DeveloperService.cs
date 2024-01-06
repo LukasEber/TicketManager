@@ -11,20 +11,37 @@ namespace TicketManager.API.Services
         private readonly TicketManagerDbContext _dbContext;
         private readonly ICustomerService _customerService;
         private readonly ITicketService _ticketService;
-        public DeveloperService(TicketManagerDbContext dbContext, ICustomerService customerService, ITicketService ticketService)
+        private readonly IServiceProvider _serviceProvider;
+        public DeveloperService(TicketManagerDbContext dbContext, ICustomerService customerService, ITicketService ticketService, IServiceProvider serviceProvider)
         {
             _dbContext = dbContext;
             _customerService = customerService;
             _ticketService = ticketService;
+            _serviceProvider = serviceProvider;
         }
 
-        public void CreateDeveloper(Developer developer)
+        public string CreateDeveloper(Developer developer)
         {
-            _dbContext.Add(developer);
-            _dbContext.SaveChanges();
+            ILoginService loginService = _serviceProvider.GetRequiredService<ILoginService>();
+            try
+            {
+
+                var userAlreadyExists = loginService.Login(developer.Credentials);
+                if(userAlreadyExists == null) //user does not exist
+                {
+                    _dbContext.Add(developer);
+                    _dbContext.SaveChanges();
+                    return "Created";
+                }
+                return "User already exists";
+            }
+            catch (Exception)
+            {
+                return "Exception thrown";
+            }
         }
 
-        public void DeleteDeveloper(Guid id)
+        public bool DeleteDeveloper(Guid id)
         {
             var devToDelete = _dbContext.Developers.Find(id);
             if(devToDelete != null)
@@ -41,7 +58,10 @@ namespace TicketManager.API.Services
                 }
                 _dbContext.Remove(devToDelete);
                 _dbContext.SaveChanges();
+
+                return true;
             }
+            return false;
         }
 
         public Developer GetDeveloper(Guid id)
@@ -49,9 +69,16 @@ namespace TicketManager.API.Services
             var dev = _dbContext.Developers.Find(id);
             var customers = _dbContext.Customers.Where(c => c.DeveloperID == id).ToList();
             var tickets = _dbContext.Tickets.Where(t => t.DeveloperID == id).ToList();
-            dev.AssignedCustomers = customers;
-            dev.Tickets = tickets;
-            return dev;
+            if(dev != null)
+            {
+                foreach(var cust in customers)
+                {
+                    dev.AssignedCustomers.Add(_customerService.GetCustomer(cust.ID));
+                }
+                dev.Tickets = tickets;
+                return dev;
+            }
+            return null;
         }
 
         public Developer UpdateDeveloper(Developer developer)

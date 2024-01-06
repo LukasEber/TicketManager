@@ -5,15 +5,15 @@ using TicketManager.Domain.Models;
 namespace TicketManager.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("auth")]
     public class LoginController : ControllerBase
     {
-        private readonly ILoginService _loginservice;
+        private readonly ILoginService _loginService;
         public LoginController(ILoginService loginservice)
         {
-            _loginservice = loginservice;
+            _loginService = loginservice;
         }
-        [HttpPost("auth")]
+        [HttpPost("login")]
         public IActionResult Login(LoginRequest request)
         {
             try
@@ -24,7 +24,7 @@ namespace TicketManager.API.Controllers
                     Password = request.Credentials.Password
                 };
 
-                object user = _loginservice.Login(credentials);
+                object user = _loginService.Login(credentials);
                 if (user != null)
                 {
                     return Ok(user);

@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 using TicketManager.API.Contracts;
 using TicketManager.API.Services;
 using TicketManager.Domain.Models;
@@ -31,13 +33,28 @@ namespace TicketManager.API.Controllers
                     Applications = request.Applications
                 };
 
-                _customerService.CreateCustomer(customer);
+                var created = _customerService.CreateCustomer(customer);
 
-                return CreatedAtAction(
-                        actionName: nameof(GetCustomer),
-                        routeValues: new { id = customer.ID },
-                        value: customer
-                    );
+                switch (created)
+                {
+                    case "Created":
+                        return CreatedAtAction(
+                            actionName: nameof(GetCustomer),
+                            routeValues: new { id = customer.ID },
+                            value: customer
+                        );
+                    case "User already exists":
+                        return BadRequest(new { Message = "There is already a user with the same E-Mail." });
+
+                    case "Exception thrown":
+                        return BadRequest(new { Message = "Exception thrown while creating user." });
+
+                    case "No developer found":
+                        return BadRequest(new { Message = "There is no developer with the given ID" });
+
+                    default:
+                        return BadRequest();
+                }
             }
             catch (Exception)
             {
@@ -61,16 +78,25 @@ namespace TicketManager.API.Controllers
                     Applications = request.Applications
                 };
 
-                _customerService.UpdateCustomer(customer);
+                var updated = _customerService.UpdateCustomer(customer);
 
-                return CreatedAtAction(
-                    nameof(GetCustomer),
-                    new { id },
-                    customer);
+                if (updated != null)
+                {
+
+                    return CreatedAtAction(
+                        nameof(GetCustomer),
+                        new { id },
+                        customer);
+                }
+                else
+                {
+                    return NotFound();
+                }
+
             }
-            catch
+            catch (Exception ex)
             {
-                return NotFound();
+                return BadRequest();
             }
         }
 
@@ -80,11 +106,11 @@ namespace TicketManager.API.Controllers
             try
             {
                 Customer customer = _customerService.GetCustomer(id);
-                return Ok(customer);
+                return customer != null ? Ok(customer) : NotFound();
             }
             catch (Exception)
             {
-                return NotFound();
+                return BadRequest();
             }
         }
 
@@ -93,12 +119,12 @@ namespace TicketManager.API.Controllers
         {
             try
             {
-                _customerService.DeleteCustomer(id);
-                return NoContent();
+                bool deleted = _customerService.DeleteCustomer(id);
+                return deleted ? NoContent() : NotFound();
             }
             catch (Exception)
             {
-                return NotFound();
+                return BadRequest();
             }
         }
     }

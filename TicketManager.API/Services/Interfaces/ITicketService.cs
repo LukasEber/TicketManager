@@ -4,12 +4,12 @@ namespace TicketManager.API.Services
 {
     public interface ITicketService
     {
-        public void CreateTicket(Ticket ticket);
+        public bool CreateTicket(Ticket ticket);
 
         public Ticket GetTicket(Guid id);
 
-        public void DeleteTicket(Guid id);
+        public bool DeleteTicket(Guid id);
 
-        public void UpdateTicket(Ticket ticket);
+        public Ticket UpdateTicket(Ticket ticket);
     }
 }

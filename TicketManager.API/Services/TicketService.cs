@@ -11,20 +11,31 @@ namespace TicketManager.API.Services
             _dbContext = dbContext;
         }
 
-        public void CreateTicket(Ticket ticket)
+        public bool CreateTicket(Ticket ticket)
         {
-            _dbContext.Add(ticket);
-            _dbContext.SaveChanges();
+            try
+            {
+                _dbContext.Add(ticket);
+                _dbContext.SaveChanges();
+                return true;
+            }
+
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
-        public void DeleteTicket(Guid id)
+        public bool DeleteTicket(Guid id)
         {
             var ticketToDelete = _dbContext.Tickets.Find(id);
             if (ticketToDelete != null)
             {
                 _dbContext.Tickets.Remove(ticketToDelete);
                 _dbContext.SaveChanges();
+                return true;
             }
+            return false;
         }
 
         public Ticket GetTicket(Guid id)
@@ -32,14 +43,18 @@ namespace TicketManager.API.Services
             return _dbContext.Tickets.Find(id);
         }
 
-        public void UpdateTicket(Ticket ticket)
+        public Ticket UpdateTicket(Ticket ticket)
         {
             var ticketToUpdate = _dbContext.Tickets.Find(ticket.ID);
             if (ticketToUpdate != null)
             {
                 _dbContext.Entry(ticketToUpdate).CurrentValues.SetValues(ticket);
                 _dbContext.SaveChanges();
+
+                var updated = GetTicket(ticket.ID);
+                return updated;
             }
+            return null;
         }
     }
 }

@@ -35,13 +35,19 @@ namespace TicketManager.API.Controllers
                     Comment = request.Comment
                 };
 
-                _ticketservice.CreateTicket(ticket);
+                bool created = _ticketservice.CreateTicket(ticket);
+                if (created)
+                {
+                    return CreatedAtAction(
+                             nameof(GetTicket),
+                             new { ticket.ID },
+                             ticket);
+                }
+                else
+                {
+                    return BadRequest(new {Message = "Error while creating Ticket"});
+                }
 
-                return CreatedAtAction(
-                     nameof(GetTicket),
-                     new { ticket.ID },
-                     ticket
-                    );
             }
             catch (Exception)
             {
@@ -69,17 +75,23 @@ namespace TicketManager.API.Controllers
                     Comment = request.Comment
                 };
 
-                _ticketservice.UpdateTicket(ticket);
+               var updated = _ticketservice.UpdateTicket(ticket);
+                if(updated != null) {
+                    return CreatedAtAction(
+                            nameof(GetTicket),
+                            new { id },
+                            ticket);
+                }
+                else
+                {
+                    return NotFound();
+                }
 
-                return CreatedAtAction(
-                    nameof(GetTicket),
-                    new { id },
-                    ticket);
             }
             catch (Exception)
             {
 
-                return NotFound();
+                return BadRequest();
             }
         }
 
@@ -89,11 +101,11 @@ namespace TicketManager.API.Controllers
             try
             {
                 Ticket ticket = _ticketservice.GetTicket(id);
-                return Ok(ticket);
+                return ticket != null ? Ok(ticket) : NotFound();
             }
             catch (Exception)
             {
-                return NotFound();
+                return BadRequest();
             }
         }
 
@@ -102,12 +114,12 @@ namespace TicketManager.API.Controllers
         {
             try
             {
-                _ticketservice.DeleteTicket(id);
-                return NoContent();
+                bool deleted = _ticketservice.DeleteTicket(id);
+                return deleted ? NoContent() : NotFound();
             }
             catch (Exception)
             {
-                return NotFound();
+                return BadRequest();
             }
         }
     }

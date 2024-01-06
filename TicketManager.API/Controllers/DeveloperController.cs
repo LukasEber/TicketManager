@@ -31,13 +31,25 @@ namespace TicketManager.API.Controllers
                     Applications = request.Applications
                 };
 
-                _developerService.CreateDeveloper(developer);
+                var created = _developerService.CreateDeveloper(developer);
 
-                return CreatedAtAction(
-                    actionName: nameof(GetDeveloper),
-                    routeValues: new { id = developer.ID },
-                    value: developer
-                    );
+                switch (created)
+                {
+                    case "Created":
+                        return CreatedAtAction(
+                            actionName: nameof(GetDeveloper),
+                            routeValues: new { id = developer.ID },
+                            value: developer
+                        );
+                    case "User already exists":
+                        return BadRequest(new { Message = "There is already a user with the same E-Mail." });
+
+                    case "Exception thrown":
+                        return BadRequest(new { Message = "Exception thrown while creating user." });
+
+                    default:
+                        return BadRequest();
+                }
             }
             catch (Exception)
             {
@@ -62,14 +74,22 @@ namespace TicketManager.API.Controllers
 
                 var updated = _developerService.UpdateDeveloper(developer);
 
-                return CreatedAtAction(
-                    nameof(GetDeveloper),
-                    new { id },
-                    updated);
+                if (updated != null)
+                {
+                    return CreatedAtAction(
+                            nameof(GetDeveloper),
+                            new { id },
+                            updated);
+                }
+                else
+                {
+                    return NotFound();
+                }
+
             }
             catch (Exception)
             {
-                return NotFound();
+                return BadRequest();
             }
         }
 
@@ -79,11 +99,11 @@ namespace TicketManager.API.Controllers
             try
             {
                 Developer developer = _developerService.GetDeveloper(id);
-                return Ok(developer);
+                return developer != null ? Ok(developer) : NotFound();
             }
             catch (Exception)
             {
-                return NotFound();
+                return BadRequest();
             }
         }
 
@@ -92,12 +112,12 @@ namespace TicketManager.API.Controllers
         {
             try
             {
-                _developerService.DeleteDeveloper(id);
-                return NoContent();
+                bool deleted = _developerService.DeleteDeveloper(id);
+                return deleted ? NoContent() : NotFound();
             }
             catch (Exception)
             {
-                return NotFound();
+                return BadRequest();
             }
         }
     }

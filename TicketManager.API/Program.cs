@@ -14,10 +14,12 @@ namespace TicketManager.API
 
             builder.Services.AddControllers();
             //register services
-            builder.Services.AddScoped<ITicketService, TicketService>();
+
             builder.Services.AddScoped<ICustomerService, CustomerService>();
             builder.Services.AddScoped<IDeveloperService, DeveloperService>();
+            builder.Services.AddScoped<ITicketService, TicketService>();
             builder.Services.AddScoped<ILoginService, LoginService>();
+
             //add database connection
             var connection = builder.Configuration.GetConnectionString("DatabaseConnection");
             builder.Services.AddEndpointsApiExplorer();
