@@ -21,9 +21,15 @@ namespace TicketManager.API
             builder.Services.AddScoped<ILoginService, LoginService>();
 
             //add database connection
-            var connection = builder.Configuration.GetConnectionString("DatabaseConnection");
+            var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+            var connection = environment == Environments.Production
+                ? builder.Configuration.GetConnectionString("DatabaseConnectionPROD")
+                : builder.Configuration.GetConnectionString("DatabaseConnectionDEV");
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
             //register database context
             builder.Services.AddDbContext<TicketManagerDbContext>(options =>
             {

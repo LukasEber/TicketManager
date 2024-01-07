@@ -35,19 +35,24 @@ namespace TicketManager.API.Controllers
                     Comment = request.Comment
                 };
 
-                bool created = _ticketservice.CreateTicket(ticket);
-                if (created)
+                string created = _ticketservice.CreateTicket(ticket);
+                switch (created)
                 {
-                    return CreatedAtAction(
-                             nameof(GetTicket),
-                             new { ticket.ID },
-                             ticket);
-                }
-                else
-                {
-                    return BadRequest(new {Message = "Error while creating Ticket"});
-                }
+                    case "Created":
+                        return CreatedAtAction(
+                                 nameof(GetTicket),
+                                 new { ticket.ID },
+                                 ticket);
 
+                    case "Exception thrown":
+                        return BadRequest(new { message = "Exception thrown while creating ticket." });
+
+                    case "No developer or customer found":
+                        return BadRequest(new { message = "There is no matching developer or customer in the database" });
+
+                    default:
+                        return BadRequest();
+                }
             }
             catch (Exception)
             {

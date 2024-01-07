@@ -11,19 +11,26 @@ namespace TicketManager.API.Services
             _dbContext = dbContext;
         }
 
-        public bool CreateTicket(Ticket ticket)
+        public string CreateTicket(Ticket ticket)
         {
-            try
+            var existingDev = _dbContext.Developers.FirstOrDefault(d => d.ID == ticket.DeveloperID);
+            var existingCust = _dbContext.Customers.FirstOrDefault(c => c.ID == ticket.CustomerID);
+            if((ticket.DeveloperID != null && existingDev != null) || (ticket.CustomerID != null && existingCust != null))
             {
-                _dbContext.Add(ticket);
-                _dbContext.SaveChanges();
-                return true;
-            }
+                try
+                {
+                    _dbContext.Add(ticket);
+                    _dbContext.SaveChanges();
+                    return "Created";
+                }
 
-            catch (Exception)
-            {
-                return false;
+                catch (Exception)
+                {
+                    return "Exception thrown";
+                }
             }
+            return "No developer or customer found";
+
         }
 
         public bool DeleteTicket(Guid id)

@@ -4,7 +4,7 @@ namespace TicketManager.API.Services
 {
     public interface ITicketService
     {
-        public bool CreateTicket(Ticket ticket);
+        public string CreateTicket(Ticket ticket);
 
         public Ticket GetTicket(Guid id);
 
