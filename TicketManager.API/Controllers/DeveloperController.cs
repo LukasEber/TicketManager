@@ -26,8 +26,6 @@ namespace TicketManager.API.Controllers
                     Name = request.Name,
                     ID = Guid.NewGuid(),
                     Credentials = request.Credentials,
-                    Tickets = request.Tickets,
-                    AssignedCustomers = request.AssignedCustomers,
                     Applications = request.Applications
                 };
 
