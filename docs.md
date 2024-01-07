@@ -1,35 +1,41 @@
 # TicketManager
-* [Overview](#Overview)
-* [Application Architecture](#Application-Architecture)
-* [Technologies](#Technologies)
-* [Usage](#Usage)
-* [API Definition](#API-Definition)
-	* [Developer](#Developer)
-		* [Create Developer](#Create-Developer)
-		* [Get Developer](#Get-Developer)
-		* [Update Developer](#Update-Developer)
-		* [Delete Developer](#Delete-Developer)
-	* [Customer](#Customer)
-		* [Create Customer](#Create-Customer)
-		* [Get Customer](#Get-Customer)
-		* [Update Customer](#Update-Customer)
-		* [Delete Customer](#Delete-Customer)
-	* [Tickets](#Tickets)
-		* [Create Ticket](#Create-Ticket)
-		* [Get Ticket](#Get-Ticket)
-		* [Update Ticket](#Update-Ticket)
-		* [Delete Ticket](#Delete-Ticket)
-	* [Login](#Login)
+* [Overview](#overview)
+* [Application Architecture](#application-architecture)
+* [Technologies](#technologies)
+* [Usage](#usage)
+* [API Definition](#api-definition)
+	* [Developer](#developer)
+		* [Create Developer](#create-developer)
+		* [Get Developer](#get-developer)
+		* [Update Developer](#update-developer)
+		* [Delete Developer](#delete-developer)
+	* [Customer](#customer)
+		* [Create Customer](#create-customer)
+		* [Get Customer](#get-customer)
+		* [Update Customer](#update-customer)
+		* [Delete Customer](#delete-customer)
+	* [Tickets](#tickets)
+		* [Create Ticket](#create-ticket)
+		* [Get Ticket](#get-ticket)
+		* [Update Ticket](#update-ticket)
+		* [Delete Ticket](#delete-ticket)
+	* [Login](#login)
 
-# Overview {#Overview}
-# Application Architecture {#Application-Architecture}
-# Technologies {#Technologies}
-# Usage {#Usage}
-# API Definition {#API-Definition}
-## Developer {#Developer}
-### Create Developer {#Create-Developer}
+# Overview
+# Application Architecture
+# Technologies
+# Usage
+<b>Simply</b>  
+``Git clone https://github.com/LukasEber/TicketManager``  
+<b>and</b>  
+``dotnet run --project TicketManager.API``  
+``dotnet run --project TicketManager.Client``  
+# API Definition
+## Developer
+### Create Developer
 #### Create Developer Request
-```json
+
+```
 POST /Developer/create 
 ```
 ```json
@@ -46,7 +52,7 @@ POST /Developer/create
 }
 ```
 #### Create Developer Response
-```json
+```
 201 Created
 400 Bad Request {message}
 ```
@@ -67,13 +73,13 @@ POST /Developer/create
 }
 ```
 
-### Get Developer {#Get-Developer}
+### Get Developer
 #### Get Developer Request
-```json
+```
 GET /Developer/get/{id}
 ```
 #### Get Developer Response
-```json
+```
 200 Success
 404 Not Found 
 400 Bad Request {message}
@@ -123,9 +129,9 @@ GET /Developer/get/{id}
 }
 ```
 
-### Update Developer {#Update-Developer}
+### Update Developer
 #### Update Developer Request
-```json
+```
 PUT /Developer/update/{id}
 ```
 ```json
@@ -174,7 +180,7 @@ PUT /Developer/update/{id}
 }
 ```
 #### Update Developer Response
-```json
+```
 201 Created
 404 Not Found
 400 Bad Request {message}
@@ -224,21 +230,21 @@ PUT /Developer/update/{id}
     ]
 }
 ```
-### Delete Developer {#Delete-Developer}
+### Delete Developer
 #### Delete Developer Request
-```json
+```
 DELETE /Developer/del/{id}
 ```
 #### Delete Developer Response
-```json
+```
 204 No Content
 404 Not Found
 400 Bad Request {message}
 ```
-## Customer {#Customer}
-### Create Customer {#Create-Customer}
+## Customer
+### Create Customer
 #### Create Customer Request
-```json
+```
 POST /Customer/create
 ```
 ```json
@@ -255,7 +261,7 @@ POST /Customer/create
 }
 ```
 #### Create Customer Response
-```json
+```
 201 Created
 400 Bad Request {message}
 ```
@@ -274,13 +280,13 @@ POST /Customer/create
     ]
 }
 ```
-### Get Customer {#Get-Customer}
+### Get Customer
 #### Get Customer Request
-```json
+```
 GET /Customer/get/{id}
 ```
 #### Get Customer Response
-```json
+```
 200 OK
 404 Not Found
 400 Bad Request {message}
@@ -314,9 +320,9 @@ GET /Customer/get/{id}
     "applications": null
 }
 ```
-### Update Customer {#Update-Customer}
+### Update Customer
 #### Update Customer Request
-```json
+```
 PUT /Customer/update/{id}
 ```
 ```json
@@ -349,7 +355,7 @@ PUT /Customer/update/{id}
 }
 ```
 #### Update Customer Response
-```json
+```
 201 Created
 404 Not Found
 400 Bad Request {message}
@@ -383,21 +389,21 @@ PUT /Customer/update/{id}
     "applications": null
 }
 ```
-### Delete Customer {#Delete-Customer}
+### Delete Customer
 #### Delete Customer Request
-```json
+```
 DELETE /Customer/del/{id}
 ```
 #### Delete Customer Response
-```json
+```
 204 No Content
 404 Not Found
 400 Bad Request {message}
 ```
-## Ticket {#Tickets}
-### Create Ticket {#Create-Ticket}
+## Tickets
+### Create Ticket
 #### Create Ticket Request
-```json
+```
 POST /Ticket/create
 ```
 ```json
@@ -417,7 +423,7 @@ POST /Ticket/create
 }
 ```
 #### Create Ticket Response
-```json
+```
 201 Created
 400 Bad Request {message}
 ```
@@ -438,13 +444,13 @@ POST /Ticket/create
     "comment": null
 }
 ``` 
-### Get Ticket {#Get-Ticket}
+### Get Ticket
 #### Get Ticket Request
-```json
+```
 GET /Ticket/get/{id}
 ```
 #### Get Ticket Response
-```json
+```
 200 OK
 404 Not Found
 400 Bad Request {message}
@@ -466,9 +472,9 @@ GET /Ticket/get/{id}
     "comment": null
 }
 ``` 
-### Update Ticket {#Update-Ticket}
+### Update Ticket
 #### Update Ticket Request
-```json
+```
 PUT /Ticket/update/{id}
 ```
 ```json
@@ -489,7 +495,7 @@ PUT /Ticket/update/{id}
 }
 ```
 #### Update Ticket Response
-```json
+```
 201 Created
 404 Not Found
 400 Bad Request {message}
@@ -511,20 +517,20 @@ PUT /Ticket/update/{id}
     "comment": "important to finish"
 }
 ```
-### Delete Ticket {#Delete-Ticket}
+### Delete Ticket
 #### Delete Ticket Request
-```json
+```
 DELETE /Ticket/del/{id}
 ```
 #### Delete Ticket Response
-```json
+```
 - 204 No Content
 - 404 Not Found
 - 400 Bad Request
 ```
-## Login {#Login}
+## Login
 ### Login Request
-```json
+```
 POST /auth/login
 ```
 ```json
@@ -536,7 +542,7 @@ POST /auth/login
 }
 ```
 ### Login Response
-```json
+```
 200 OK
 401 Unauthorized
 404 Not Found
