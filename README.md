@@ -27,7 +27,7 @@
 # Usage
 # API Definition
 ```
-<b>Important:</b> Please refrain from using the update endpoints to add new entities, such as new tickets to customers, new tickets to developers, or new customers to developers. This won't work as these entities don't have an ID at this stage. Instead, utilize the Create endpoints for creating new objects. You can employ the update endpoints to modify existing entities, for instance, updating the status of an existing ticket using the update customer endpoint.
+**==Important:==** Please refrain from using the update endpoints to add new entities, such as new tickets to customers, new tickets to developers, or new customers to developers. This won't work as these entities don't have an ID at this stage. Instead, utilize the Create endpoints for creating new objects. You can employ the update endpoints to modify existing entities, for instance, updating the status of an existing ticket using the update customer endpoint.
 ```
 ## Developer
 ### Create Developer
