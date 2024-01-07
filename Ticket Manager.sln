@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketManager.Domain", "Tic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketManager.API", "TicketManager.API\TicketManager.API.csproj", "{54E142AA-B6BC-4B78-8952-026615110547}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketManager.Application", "TicketManager.Application\TicketManager.Application.csproj", "{BCE66E44-9663-4B6A-B4C3-D6756D99A0A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketManager.Application", "TicketManager.Application\TicketManager.Application.csproj", "{BCE66E44-9663-4B6A-B4C3-D6756D99A0A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{97B1E9EF-2FB1-4A87-B81D-8E568993377D}"
+	ProjectSection(SolutionItems) = preProject
+		docs.md = docs.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
