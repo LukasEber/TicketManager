@@ -1,6 +1,6 @@
-# TicketManager
+﻿# TicketManager
 * [Overview](#overview)
-* [Application Architecture](#application-architecture)
+* [Project Architecture](#application-architecture)
 * [Technologies](#technologies)
 * [Usage](#usage)
 * [API Definition](#api-definition)
@@ -20,16 +20,21 @@
 		* [Update Ticket](#update-ticket)
 		* [Delete Ticket](#delete-ticket)
 	* [Login](#login)
+* [TicketManager.Application](#ticketmanager.application)
+* [TicketManager.Domain](#ticketmanager.domain)
+* [TicketManager.Client](#ticketmanager.client)
 
 # Overview
+<b>💡 The Ticket Manager project enables developers or companies to create user-specific accounts for their clients. Once these accounts are set up, clients can generate tickets for various applications assigned to them by their developers or companies. The system offers various priority levels for these tickets and facilitates progress tracking by using different status indicators. </b>
 # Application Architecture
+![TicketManager.Architecture](assets/TicketManager.Architecture.png)
 # Technologies
+<b>The App is built using ASP .NET 7 for the API and .NET MAUI for the client applications.</b>
 # Usage
 <b>Simply</b>  
 ``Git clone https://github.com/LukasEber/TicketManager``  
 <b>and</b>  
 ``dotnet run --project TicketManager.API``  
-``dotnet run --project TicketManager.Client``  
 # API Definition
 ## Developer
 ### Create Developer
